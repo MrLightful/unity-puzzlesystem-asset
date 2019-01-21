@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PuzzleSystem
 {
     [AddComponentMenu("PuzzleSystem/Core/Core Logic")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/core-elements/corepuzzlelogic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/cores/logic")]
     /// <summary>
     /// The class contains basic (empty) puzzle logic.
     /// By default, it just counts triggered events and 

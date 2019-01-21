@@ -5,7 +5,7 @@ using System;
 namespace PuzzleSystem
 {
     [AddComponentMenu("PuzzleSystem/Core/Core Handler")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/core-elements/core-p")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/cores/handler")]
     /// <summary>
     /// The class contains basic event handler and represents a single puzzle system.
     /// It specifies what actions to be taken when the player fails in solving puzzle or succeeds.

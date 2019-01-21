@@ -3,7 +3,7 @@
 namespace PuzzleSystem
 {
     [AddComponentMenu("PuzzleSystem/Standard Logics/Simult Logic")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/simultpuzzlelogic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/simult")]
     /// <summary>
     /// The class contains logic for a specific type of puzzles.
     /// In order to complete the puzzle, all triggers must be active at the same time.

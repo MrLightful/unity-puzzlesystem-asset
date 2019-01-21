@@ -4,7 +4,7 @@ using UnityEngine;
 namespace PuzzleSystem
 {
     [AddComponentMenu("PuzzleSystem/Standard Logics/Simult w Delay Logic")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/simultdelayedpuzzlelogic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/simultdelayed")]
     /// <summary>
     /// The class contains logic for a specific type of puzzles.
     /// The triggers are triggered for some time specified by the delay variable, and then they are deactivated back to the initial state.

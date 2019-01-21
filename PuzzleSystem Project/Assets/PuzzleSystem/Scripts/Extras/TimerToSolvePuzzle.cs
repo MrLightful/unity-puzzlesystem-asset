@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace PuzzleSystem.Extras
 {
-    [AddComponentMenu("PuzzleSystem/Extras/Timer")]
+    [AddComponentMenu("PuzzleSystem/Extras/Timer for Puzzle")]
     [RequireComponent(typeof(CorePuzzleLogic))]
     [RequireComponent(typeof(CorePuzzleHandler))]
     public class TimerToSolvePuzzle : MonoBehaviour

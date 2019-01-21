@@ -20,10 +20,10 @@ namespace PuzzleSystem.Editor
 
 
         // Styles
-        private GUIStyle greyText;
-        private GUIStyle linkText;
-        private GUIStyle reviewBanner;
-        private GUILayoutOption reviewOptions;
+        private GUIStyle greyTextStyle;
+        private GUIStyle linkTextStyle;
+        private GUIStyle reviewBannerStyle;
+        private GUILayoutOption reviewBannerOptions;
 
         private bool stylesLoaded = false;
 
@@ -35,6 +35,11 @@ namespace PuzzleSystem.Editor
         private MonoScript trigger;
         private GameObject triggerPrefab;
 
+        // URLS
+        private const string ASSET_URL = "https://assetstore.unity.com/";
+        private const string FORUM_URL = "https://forum.unity.com/";
+        private const string DOC_URL = "https://puzzlesystem.gitbook.io/";
+        private const string AUTHOR_URL = "https://flist.me/u/rsirokov";
 
         #endregion
 
@@ -70,7 +75,7 @@ namespace PuzzleSystem.Editor
 
             int linksMarginLeft = 20;
 
-            greyText = new GUIStyle(EditorStyles.label)
+            greyTextStyle = new GUIStyle(EditorStyles.label)
             {
                 fontSize = 12,
                 normal = { textColor = Color.gray },
@@ -78,7 +83,7 @@ namespace PuzzleSystem.Editor
             };
 
 
-            linkText = new GUIStyle(EditorStyles.label)
+            linkTextStyle = new GUIStyle(EditorStyles.label)
             {
                 fontSize = 16,
                 normal = { textColor = new Color(0, 95f / 255, 249f / 255) },
@@ -86,7 +91,7 @@ namespace PuzzleSystem.Editor
             };
 
 
-            reviewBanner = new GUIStyle(EditorStyles.label)
+            reviewBannerStyle = new GUIStyle(EditorStyles.label)
             {
                 normal = {
                     background = EditorGUIUtility.whiteTexture,
@@ -96,7 +101,7 @@ namespace PuzzleSystem.Editor
                 richText = true
             };
 
-            reviewOptions = GUILayout.Height(20);
+            reviewBannerOptions = GUILayout.Height(20);
 
             stylesLoaded = true;
 
@@ -152,15 +157,14 @@ namespace PuzzleSystem.Editor
             GUILayout.Space(30);
 
             GUIContent content = new GUIContent("<size=11>★   Please, consider leaving a review for the asset.   ★</size>");
-            Rect rt = GUILayoutUtility.GetRect(content, reviewBanner, reviewOptions);
+            Rect rt = GUILayoutUtility.GetRect(content, reviewBannerStyle, reviewBannerOptions);
             rt.width = EditorGUIUtility.currentViewWidth + 6;
             rt.position += Vector2.left*3;
 
             EditorGUIUtility.AddCursorRect(rt, MouseCursor.Link);
 
-            // TODO: AssetStore URL
-            if (GUI.Button(rt, content, reviewBanner))
-                Application.OpenURL("https://www.assetstore.unity3d.com/");
+            if (GUI.Button(rt, content, reviewBannerStyle))
+                Application.OpenURL(ASSET_URL);
 
         }
 
@@ -221,15 +225,15 @@ namespace PuzzleSystem.Editor
             Rect rt;
 
             content = new GUIContent("Forum Thread");
-            rt = GUILayoutUtility.GetRect(content, linkText);
+            rt = GUILayoutUtility.GetRect(content, linkTextStyle);
 
             // TODO: Forum Thread URL
-            if (GUI.Button(rt, content, linkText))
-                Application.OpenURL("https://forum.unity3d.com/");
+            if (GUI.Button(rt, content, linkTextStyle))
+                Application.OpenURL(FORUM_URL);
 
             EditorGUIUtility.AddCursorRect(rt, MouseCursor.Link);
 
-            GUILayout.Label("Discuss the asset & ask questions.", greyText);
+            GUILayout.Label("Discuss the asset & ask questions.", greyTextStyle);
 
 
 
@@ -239,14 +243,14 @@ namespace PuzzleSystem.Editor
 
 
             content = new GUIContent("Documentation");
-            rt = GUILayoutUtility.GetRect(content, linkText);
+            rt = GUILayoutUtility.GetRect(content, linkTextStyle);
 
-            if (GUI.Button(rt, content, linkText))
-                Application.OpenURL("https://puzzlesystem.gitbook.io");
+            if (GUI.Button(rt, content, linkTextStyle))
+                Application.OpenURL(DOC_URL);
 
             EditorGUIUtility.AddCursorRect(rt, MouseCursor.Link);
 
-            GUILayout.Label("Learn more about how to use the system.", greyText);
+            GUILayout.Label("Learn more about how to use the system.", greyTextStyle);
 
 
 
@@ -254,15 +258,15 @@ namespace PuzzleSystem.Editor
 
 
             content = new GUIContent("Author");
-            rt = GUILayoutUtility.GetRect(content, linkText);
+            rt = GUILayoutUtility.GetRect(content, linkTextStyle);
             rt.width = EditorGUIUtility.currentViewWidth;
 
-            if (GUI.Button(rt, content, linkText))
-                Application.OpenURL("https://flist.me/u/rsirokov");
+            if (GUI.Button(rt, content, linkTextStyle))
+                Application.OpenURL(AUTHOR_URL);
 
             EditorGUIUtility.AddCursorRect(rt, MouseCursor.Link);
 
-            GUILayout.Label("Find out more about the author.", greyText);
+            GUILayout.Label("Find out more about the author.", greyTextStyle);
 
             GUILayout.Space(30);
 

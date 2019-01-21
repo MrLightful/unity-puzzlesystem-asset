@@ -3,7 +3,7 @@
 namespace PuzzleSystem
 {
     [AddComponentMenu("PuzzleSystem/Standard Logics/In Order Logic")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/inorderpuzzlelogic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/inorder")]
     /// <summary>
     /// The class contains logic for a specific type of puzzle.
     /// The triggers must be triggered in a specific order. 

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace PuzzleSystem
 {
     [AddComponentMenu("PuzzleSystem/Core/Core Trigger")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/core-elements/corepuzzletrigger-component")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/cores/trigger")]
     /// <summary>
     /// The class contains basic puzzle trigger functionality.
     /// The entity might be triggered only from the code by calling the 'void Trigger()' method.
