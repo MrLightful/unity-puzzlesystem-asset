@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 namespace PuzzleSystem
 {
@@ -67,12 +68,25 @@ namespace PuzzleSystem
         /// <summary>
         /// The function that is triggered whenever the player has solved the puzzle.
         /// </summary>
-        protected virtual void OnSolution() { }
+        /// <exception cref="T:System.NotImplementedException"></exception>
+        protected virtual void OnSolution()
+        {
+
+            if (this.GetType().IsSubclassOf(typeof(CorePuzzleHandler)))
+                throw new NotImplementedException();
+
+        }
 
         /// <summary>
         /// The function that is triggered whenever the player makes a mistake in solving the puzzle.
         /// </summary>
-        protected virtual void OnFailure() { }
+        protected virtual void OnFailure() 
+        {
+
+            if (this.GetType().IsSubclassOf(typeof(CorePuzzleHandler)))
+                throw new NotImplementedException();
+
+        }
 
         #endregion
 

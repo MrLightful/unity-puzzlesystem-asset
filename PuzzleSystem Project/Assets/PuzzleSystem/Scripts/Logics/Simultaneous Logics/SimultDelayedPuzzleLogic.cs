@@ -80,27 +80,24 @@ namespace PuzzleSystem
 
             yield return new WaitForSeconds(delay);
 
-            if (!isSolved || delayedFailedReset)
+            if (autoReset)
             {
                 triggers[id].UnTrigger();
                 completedSteps--;
+            }
 
-                if (!isFailed)
+            if (!isSolved && !isFailed)
+            {
+
+                handler.Fail();
+                isFailed = true;
+
+                if (autoReset && !delayedFailedReset)
                 {
-                    handler.Fail();
-                    isFailed = true;
-                }
-
-
-                if (!delayedFailedReset)
-                {
-                    if(autoReset)
-                        Reset();
-
-                    isFailed = false;
-
+                    Reset();
                     StopAllCoroutines();
                 }
+            
 
             }
 

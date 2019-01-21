@@ -106,6 +106,9 @@ namespace PuzzleSystem
         /// </summary>
         protected virtual void TriggerPuzzle(int id) {
 
+            if (isSolved && !autoReset)
+                return;
+
             completedSteps++;
 
             if (completedSteps == triggers.Length)

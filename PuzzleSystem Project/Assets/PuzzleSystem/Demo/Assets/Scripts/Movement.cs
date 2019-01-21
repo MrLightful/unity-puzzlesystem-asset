@@ -23,7 +23,7 @@ namespace PuzzleSystem.Demo
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
 
-            transform.position += (Vector3.forward * moveVertical + Vector3.right * moveHorizontal) * speed * Time.deltaTime;
+            transform.position += (transform.forward * moveVertical + transform.right * moveHorizontal) * speed * Time.deltaTime;
 
         }
 
