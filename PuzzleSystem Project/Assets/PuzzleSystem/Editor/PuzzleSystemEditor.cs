@@ -8,12 +8,15 @@ namespace PuzzleSystem.Editor
 
     public class PuzzleSystemEditor : EditorWindow
     {
+
+        #region Variables
+
         [SerializeField]
         private Texture2D logo = null;
 
         // Menu Controllers
         private int toolBarMain = 0;
-        private int toolBarCreation = 0;
+        private int toolBarTriggerType = 0;
 
 
         // Styles
@@ -24,17 +27,19 @@ namespace PuzzleSystem.Editor
 
         private bool stylesLoaded = false;
 
-        // Creation Tools
+        // Creation Tool
         private int triggerCount;
 
-        // Creation from Scripts
         private MonoScript handler;
         private MonoScript logic;
         private MonoScript trigger;
+        private GameObject triggerPrefab;
 
-        // Creation from Dropdown
-        // ...
 
+        #endregion
+
+
+        #region Window Setup
 
         [MenuItem("Tools/Puzzle System")]
         private static void InstantiateWindow() 
@@ -96,7 +101,13 @@ namespace PuzzleSystem.Editor
             stylesLoaded = true;
 
         }
-        
+
+
+        #endregion
+
+
+        #region Window Display
+
         private void OnGUI()
         {
             if (!stylesLoaded) LoadStyles();
@@ -157,29 +168,8 @@ namespace PuzzleSystem.Editor
         {
 
             EditorGUILayout.Space();
-            
-            //string[] menuOptions = new string[2];
-            //menuOptions[0] = "Scripts";
-            //menuOptions[1] = "Dropdown";
 
-            //toolBarCreation = GUILayout.Toolbar(toolBarCreation, menuOptions);
-
-
-            switch (toolBarCreation) 
-            {
-                case 0: 
-                    DisplayCreatioToolFromScripts(); 
-                    break;
-
-                case 1:
-                    DisplayCreationToolDropdown();
-                    break;
-            }
-
-
-            EditorGUILayout.Space();
-
-            triggerCount = EditorGUILayout.IntField("Number of Triggers: ", Mathf.Abs(triggerCount));
+            DisplayCreatioToolFromScripts();
 
             GUILayout.Space(30);
 
@@ -195,16 +185,32 @@ namespace PuzzleSystem.Editor
 
             EditorGUILayout.Space();
 
+            EditorGUILayout.LabelField("Parent Object: ", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
 
             handler = EditorGUILayout.ObjectField("Handler Component: ", handler, typeof(MonoScript), false) as MonoScript;
             logic = EditorGUILayout.ObjectField("Logic Component: ", logic, typeof(MonoScript), false) as MonoScript;
-            trigger = EditorGUILayout.ObjectField("Trigger Component: ", trigger, typeof(MonoScript), false) as MonoScript;
+
+            GUILayout.Space(30);
+
+            EditorGUILayout.LabelField("Trigger Objects: ", EditorStyles.boldLabel);
+            EditorGUILayout.Space();
+
+            EditorGUILayout.BeginHorizontal();
+
+            if (toolBarTriggerType == 1)
+                trigger = EditorGUILayout.ObjectField("Component: ", trigger, typeof(MonoScript), false) as MonoScript;
+            else
+                triggerPrefab = EditorGUILayout.ObjectField("Prefab: ", triggerPrefab, typeof(GameObject), false) as GameObject;
+
+            toolBarTriggerType = GUILayout.Toolbar(toolBarTriggerType, new string[] { "Prefabs", "Script" }, GUILayout.Width(EditorGUIUtility.currentViewWidth / 4));
+
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
+            triggerCount = EditorGUILayout.IntField("Number of Triggers: ", Mathf.Abs(triggerCount));
         }
 
-        private void DisplayCreationToolDropdown() 
-        { 
-        
-        }
 
         private void DisplayAboutMenu()
         {
@@ -262,14 +268,21 @@ namespace PuzzleSystem.Editor
 
         }
 
+        #endregion
+
+
+        #region System Instantiation
+
         private void InstantiateSystem()
         {
 
-            if (!handler || !logic || !trigger)
+            if ( !handler || !logic || (!trigger && !triggerPrefab) )
             {
                 if (!EditorUtility.DisplayDialog("[PuzzleSystem] System Creation Warning",
-                                                     "There is at least one empty field that is needed to create a proper puzzle structure. The system will most likely not work properly unless you add it manually. \n\nDo you want to continue the creation without the missing script(-s)?",
-                                                     "Continue", "Cancel"))
+
+                                                 "There is at least one empty field that is needed to create a proper puzzle structure. The system will most likely not work properly unless you add it manually. \n\nDo you want to continue the creation without the missing script(-s)?",
+
+                                                 "Continue", "Cancel"))
                 {
                     return;
                 }
@@ -282,7 +295,9 @@ namespace PuzzleSystem.Editor
                 if (!handler.GetClass().IsSubclassOf(typeof(CorePuzzleHandler)) && handler.GetClass() != typeof(CorePuzzleHandler))
                 {
                     EditorUtility.DisplayDialog("[PuzzleSystem] System Creation Failed",
+
                                                 "The creation of the puzzle system has failed becuase inputted Handler component does not inherit its core elements.\n\nPlease, make sure that the script you are choosing is a subclass of CorePuzzleHandler.",
+                                               
                                                 "Ok");
                     handler = null;
                     return;
@@ -296,7 +311,9 @@ namespace PuzzleSystem.Editor
                 if (!logic.GetClass().IsSubclassOf(typeof(CorePuzzleLogic)) && logic.GetClass() != typeof(CorePuzzleLogic))
                 {
                     EditorUtility.DisplayDialog("[PuzzleSystem] Failed System Creation",
+
                                                 "The creation of the puzzle system has failed becuase inputted Logic component does not inherit its core elements.\n\nPlease, make sure that the script you are choosing is a subclass of CorePuzzleLogic.",
+
                                                 "Ok");
                     logic = null;
                     return;
@@ -304,13 +321,15 @@ namespace PuzzleSystem.Editor
             }
 
             bool includeCollider = false;
-            if (trigger)
+            if (trigger && toolBarTriggerType == 1)
             {
 
                 if (!trigger.GetClass().IsSubclassOf(typeof(CorePuzzleTrigger))  && trigger.GetClass() != typeof(CorePuzzleTrigger))
                 {
                     EditorUtility.DisplayDialog("[PuzzleSystem] Failed System Creation",
+
                                                 "The creation of the puzzle system has failed becuase inputted Trigger component does not inherit its core elements.\n\nPlease, make sure that the script you are choosing is a subclass of CorePuzzleTrigger.",
+                                               
                                                 "Ok");
                     trigger = null;
                     return;
@@ -327,25 +346,53 @@ namespace PuzzleSystem.Editor
             if(handler) parentObj.AddComponent(handler.GetClass());
             CorePuzzleLogic logicComponent =  logic ? parentObj.AddComponent(logic.GetClass()) as CorePuzzleLogic : null;
 
-            GameObject temp;
+            GameObject temp = null;
+            CorePuzzleTrigger tempTriggerComponent = null;
+
             CorePuzzleTrigger[] triggers = new CorePuzzleTrigger[triggerCount];
 
             for (int i = 0; i < triggerCount; i++)
             {
-                temp = new GameObject("Trigger");
-                temp.transform.parent = parentObj.transform;
+                if (toolBarTriggerType == 1)
+                {
+                    temp = new GameObject("Trigger");
 
-                if (includeCollider)
-                    temp.AddComponent<BoxCollider>().isTrigger = true;
+                    if (includeCollider)
+                        temp.AddComponent<BoxCollider>().isTrigger = true;
 
-                if(trigger) triggers[i] = temp.AddComponent(trigger.GetClass()) as CorePuzzleTrigger;
+                    tempTriggerComponent = temp.AddComponent(trigger.GetClass()) as CorePuzzleTrigger;
+
+                } else if(triggerPrefab)
+                {
+                    temp = Instantiate(triggerPrefab);
+                    tempTriggerComponent = temp.GetComponent<CorePuzzleTrigger>();
+                }
+
+                if(temp) temp.transform.parent = parentObj.transform;
+
+                if (tempTriggerComponent) triggers[i] = tempTriggerComponent;
+
             }
 
-           if(logicComponent) logicComponent.SetTriggers(triggers);
+
+            if (toolBarTriggerType == 0 && triggers.Length > 0 && !triggers[0])
+            {
+                EditorUtility.DisplayDialog("[PuzzleSystem] Warning System Creation",
+
+                                                       "The prefab of the trigger, that was passed in for creating a system, does not contain any script that inherit CorePuzzleTrigger." +
+                                                       "\n\nThis means that the instantiated objects will not play the role of the triggers in the created puzzle system.",
+
+                                                       "Ok");
+                return;
+            }
+
+            if (logicComponent) logicComponent.SetTriggers(triggers);
         }
 
 
     }
+
+    #endregion
 
 }
 

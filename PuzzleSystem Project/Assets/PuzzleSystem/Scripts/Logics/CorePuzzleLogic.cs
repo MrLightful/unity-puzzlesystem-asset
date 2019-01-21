@@ -53,6 +53,10 @@ namespace PuzzleSystem
 
         #region Methods
 
+        /// <summary>
+        /// Sets the triggers.
+        /// </summary>
+        /// <param name="newTriggers">New triggers.</param>
         public void SetTriggers(CorePuzzleTrigger[] newTriggers) 
         {
             triggers = newTriggers;
