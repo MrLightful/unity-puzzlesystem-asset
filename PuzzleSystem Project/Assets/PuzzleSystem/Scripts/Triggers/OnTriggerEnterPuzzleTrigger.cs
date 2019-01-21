@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/On Enter")]
+    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/On Enter Trigger")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/triggers#ontriggerenterpuzzletrigger")]
     /// <summary>
     /// The class defines the puzzle trigger based on OnTriggerEnter (Collider) event.
     /// </summary>
@@ -17,6 +18,7 @@ namespace PuzzleSystem
             // Making sure that the tag of the entered object is specified in the array of tags.
             if (tags.Length > 0 && Array.IndexOf(tags, other.tag) == -1)
                 return;
+
 
             TriggerImpl();
 

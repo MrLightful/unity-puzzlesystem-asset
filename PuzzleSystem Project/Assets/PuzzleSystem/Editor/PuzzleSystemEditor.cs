@@ -280,7 +280,7 @@ namespace PuzzleSystem.Editor
             {
                 if (!EditorUtility.DisplayDialog("[PuzzleSystem] System Creation Warning",
 
-                                                 "There is at least one empty field that is needed to create a proper puzzle structure. The system will most likely not work properly unless you add it manually. \n\nDo you want to continue the creation without the missing script(-s)?",
+                                                 "There is at least one empty field passed into the . The system will most likely work improperly unless you add missing components by yourself later. \n\nDo you want to continue the creation without the missing component(-s)?",
 
                                                  "Continue", "Cancel"))
                 {

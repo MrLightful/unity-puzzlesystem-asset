@@ -2,7 +2,8 @@
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Standard Logics/Simult")]
+    [AddComponentMenu("PuzzleSystem/Standard Logics/Simult Logic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/simultpuzzlelogic")]
     /// <summary>
     /// The class contains logic for a specific type of puzzles.
     /// In order to complete the puzzle, all triggers must be active at the same time.
@@ -15,7 +16,7 @@ namespace PuzzleSystem
         // The id of the respective trigger will be passed.
         protected override void TriggerPuzzle(int id)
         {
-            if (isSolved && !autoReset)
+            if (IsSolved && !autoResetSolution)
                 return;
 
             completedSteps = 0;

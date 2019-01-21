@@ -4,7 +4,8 @@ using System;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Core/Handler")]
+    [AddComponentMenu("PuzzleSystem/Core/Core Handler")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/core-elements/core-p")]
     /// <summary>
     /// The class contains basic event handler and represents a single puzzle system.
     /// It specifies what actions to be taken when the player fails in solving puzzle or succeeds.
@@ -12,6 +13,7 @@ namespace PuzzleSystem
     /// </summary>
     public class CorePuzzleHandler : MonoBehaviour
     {
+    
 
         #region Variables
 
@@ -24,6 +26,7 @@ namespace PuzzleSystem
         [SerializeField]
         [Tooltip("The Events that will happen whenever the player makes a mistake in solving the puzzle.")]
         protected UnityEvent onFailureEvent;
+
 
         [Tooltip("Debug this specific puzzle system into the console?")]
         /// <summary>

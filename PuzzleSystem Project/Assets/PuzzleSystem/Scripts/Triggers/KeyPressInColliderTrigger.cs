@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/On Keyboard's Key")]
-    public class KeyboardInColliderTrigger : CoreColliderBasedPuzzleTrigger
+    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/Key Press Trigger")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/~/drafts/-LWlSLhxdE-k6aU8t8q3/primary/manual/triggers#keypressincollidertrigger")]
+    public class KeyPressInColliderTrigger : CoreColliderBasedPuzzleTrigger
     {
 
         #region Variables
 
         private enum KeyboardTriggerType
         {
-            //GetKey,
             GetKeyUp,
             GetKeyDown
         }
@@ -39,10 +39,6 @@ namespace PuzzleSystem
             switch (type) 
             {
 
-                //case KeyboardTriggerType.GetKey:
-                    //GetKeyCheck();
-                    //break;
-
                 case KeyboardTriggerType.GetKeyUp:
                     GetKeyUpCheck();
                     break;
@@ -58,12 +54,6 @@ namespace PuzzleSystem
 
 
         #region Keyboard Type Implementations
-
-        private void GetKeyCheck()
-        {
-            if (Input.GetKey(key))
-                TriggerImpl();
-        }
 
         private void GetKeyUpCheck()
         {

@@ -3,7 +3,8 @@ using UnityEngine.Events;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Core/Trigger")]
+    [AddComponentMenu("PuzzleSystem/Core/Core Trigger")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/core-elements/corepuzzletrigger-component")]
     /// <summary>
     /// The class contains basic puzzle trigger functionality.
     /// The entity might be triggered only from the code by calling the 'void Trigger()' method.
@@ -23,6 +24,9 @@ namespace PuzzleSystem
         /// </summary>
         protected bool allowMultipleTriggerings;
 
+        [SerializeField]
+        [Tooltip("If the puzzle is solved/failed, and the trigger is inactive, allow its activation?")]
+        protected bool allowTriggeringAfterHandled;
 
         [Space(20)]
 
@@ -45,6 +49,8 @@ namespace PuzzleSystem
         /// </summary>
         public delegate void OnPuzzleTriggerDelegate(int triggerID);
         public event OnPuzzleTriggerDelegate onPuzzleTriggerEvent;
+
+        private CorePuzzleLogic logic;
 
         /// <summary>
         /// Debug the events into console? Inherits its state from the puzzle handler.
@@ -76,8 +82,9 @@ namespace PuzzleSystem
         /// </summary>
         /// <param name="id">Identifier of the trigger</param>
         /// <param name="debug">If set to <c>true</c>, the system will debug the events and actions into console. Preferebly keep in synch with the puzzle handler.</param>
-        public virtual void Init(int id, bool debug) 
+        public virtual void Init(CorePuzzleLogic logic, int id, bool debug) 
         {
+            this.logic = logic;
             this.id = id;
             this.debug = debug;
         }
@@ -117,7 +124,7 @@ namespace PuzzleSystem
         /// </summary>
         protected virtual void TriggerImpl()
         {
-            if (!allowMultipleTriggerings && isTriggering)
+            if ( (!allowMultipleTriggerings && isTriggering) || (!allowTriggeringAfterHandled && (logic.IsFailed || logic.IsSolved)) )
                 return;
 
             if (debug)

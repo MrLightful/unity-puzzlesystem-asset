@@ -2,7 +2,8 @@
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Standard Logics/In Order")]
+    [AddComponentMenu("PuzzleSystem/Standard Logics/In Order Logic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/inorderpuzzlelogic")]
     /// <summary>
     /// The class contains logic for a specific type of puzzle.
     /// The triggers must be triggered in a specific order. 
@@ -80,7 +81,7 @@ namespace PuzzleSystem
         // The id of the respective trigger will be passed.
         protected override void TriggerPuzzle(int id)
         {
-            if (isSolved && !autoReset)
+            if (IsSolved || IsFailed)
                 return;
 
             bool success = false;
@@ -107,7 +108,9 @@ namespace PuzzleSystem
                 completedSteps++;
             else
             {
-                Reset();
+                if(autoResetFailure)
+                    Reset();
+
                 handler.Fail();
             }
 

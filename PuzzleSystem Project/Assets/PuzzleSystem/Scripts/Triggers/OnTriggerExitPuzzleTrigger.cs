@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/On Exit")]
+    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/On Exit Trigger")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/triggers#ontriggerexitpuzzletrigger")]
     /// <summary>
     /// The class defines the puzzle trigger based on OnTriggerExit (Collider) event.
     /// </summary>

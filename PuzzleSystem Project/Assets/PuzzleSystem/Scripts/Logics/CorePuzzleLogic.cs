@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Core/Logic")]
+    [AddComponentMenu("PuzzleSystem/Core/Core Logic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/core-elements/corepuzzlelogic")]
     /// <summary>
     /// The class contains basic (empty) puzzle logic.
     /// By default, it just counts triggered events and 
@@ -26,11 +27,29 @@ namespace PuzzleSystem
         protected CorePuzzleTrigger[] triggers = new CorePuzzleTrigger[0];
 
         [SerializeField]
-        [Tooltip("Should the puzzle be automatically reset as soon as it has been solved or failed?")]
+        [Tooltip("Should the puzzle be automatically reset as soon as it has been failed?")]
         /// <summary>
         /// Should the puzzle be automatically reset as soon as it has been solved or failed?
         /// </summary>
-        protected bool autoReset = false;
+        protected bool autoResetFailure = false;
+
+        [SerializeField]
+        [Tooltip("Should the puzzle be automatically reset as soon as it has been solved?")]
+        protected bool autoResetSolution = false;
+
+        public bool IsAutoResetFailure {
+            get {
+                return autoResetFailure;
+            }
+        }
+
+        public bool IsAutoResetSolution
+        {
+            get
+            {
+                return autoResetSolution;
+            }
+        }
 
 
         /// <summary>
@@ -46,7 +65,15 @@ namespace PuzzleSystem
         /// <summary>
         /// Has this puzzle already been solved?
         /// </summary>
-        protected bool isSolved = false;
+        public bool IsSolved {
+            get;
+            protected set;
+        }
+
+        public bool IsFailed {
+            get;
+            protected set;
+        }
 
         #endregion
 
@@ -54,10 +81,31 @@ namespace PuzzleSystem
         #region Methods
 
         /// <summary>
+        /// Forces the solve of the puzzle.
+        /// </summary>
+        public void ForceSolve() 
+        {
+            AcceptSolution();
+        }
+
+        /// <summary>
+        /// Forces the fail of the puzzle.
+        /// </summary>
+        /// <param name="immediate">If set to <c>true</c>, resets the puzzle's elements immediately, regardless of internal implementations.</param>
+        public void ForceFail(bool immediate = true) 
+        {
+            IsFailed = true;
+            IsSolved = false;
+
+            if (autoResetFailure && immediate)
+                Reset();
+        }
+
+        /// <summary>
         /// Sets the triggers.
         /// </summary>
         /// <param name="newTriggers">New triggers.</param>
-        public void SetTriggers(CorePuzzleTrigger[] newTriggers) 
+        public void SetTriggers(CorePuzzleTrigger[] newTriggers)
         {
             triggers = newTriggers;
         }
@@ -68,7 +116,7 @@ namespace PuzzleSystem
 
             for (int i = 0; i < triggers.Length; i++)
             {
-                triggers[i].Init(i, handler.debug);
+                triggers[i].Init(this, i, handler.debug);
                 triggers[i].onPuzzleTriggerEvent += TriggerPuzzle;
             }
         }
@@ -79,7 +127,8 @@ namespace PuzzleSystem
         public virtual void Reset() {
 
             completedSteps = 0;
-            isSolved = false;
+            IsSolved = false;
+            IsFailed = false;
 
             foreach (var trigger in triggers)
             {
@@ -91,12 +140,12 @@ namespace PuzzleSystem
         /// <summary>
         /// Accepts the solution for the puzzle.
         /// </summary>
-        protected virtual void AcceptSolution() 
+        protected virtual void AcceptSolution()
         {
 
-            isSolved = true;
+            IsSolved = true;
 
-            if (autoReset)
+            if (autoResetSolution)
                 Reset();
 
             handler.Solve();
@@ -110,7 +159,7 @@ namespace PuzzleSystem
         /// </summary>
         protected virtual void TriggerPuzzle(int id) {
 
-            if (isSolved && !autoReset)
+            if (IsSolved)
                 return;
 
             completedSteps++;

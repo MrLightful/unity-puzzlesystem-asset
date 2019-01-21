@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Standard Logics/Simult w Delay")]
+    [AddComponentMenu("PuzzleSystem/Standard Logics/Simult w Delay Logic")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/standard-logics/simultdelayedpuzzlelogic")]
     /// <summary>
     /// The class contains logic for a specific type of puzzles.
     /// The triggers are triggered for some time specified by the delay variable, and then they are deactivated back to the initial state.
@@ -39,7 +40,7 @@ namespace PuzzleSystem
         // The id of the respective trigger will be passed.
         protected override void TriggerPuzzle(int id)
         {
-            if (isSolved && !autoReset)
+            if (IsSolved || IsFailed)
                 return;
 
             StartCoroutine(TriggerDelayThread(id));
@@ -49,29 +50,22 @@ namespace PuzzleSystem
             // Thus, the puzzle is solved.
             if (completedSteps == triggers.Length)
             {
-                isSolved = true;
-
-                if (autoReset && !delayedSolvedReset)
-                    Reset();
-
-                handler.Solve();
+                AcceptSolution();
             }
         }
 
         // This type of puzzle logic needs a special callback on teh solved event.
         protected override void AcceptSolution()
         {
-            isSolved = true;
+            IsSolved = true;
 
             // Instead of resetting the puzzle immediately,
             // Give time for triggers to untrigger over the delay.
-            if (autoReset && !delayedSolvedReset)
+            if (autoResetSolution && !delayedSolvedReset)
                 Reset();
 
             handler.Solve();
         }
-
-        bool isFailed = false;
 
         // The Coroutine that holds the active state of the trigger, and then disables it.
         protected IEnumerator TriggerDelayThread(int id) {
@@ -80,25 +74,25 @@ namespace PuzzleSystem
 
             yield return new WaitForSeconds(delay);
 
-            if (autoReset)
-            {
-                triggers[id].UnTrigger();
-                completedSteps--;
-            }
-
-            if (!isSolved && !isFailed)
+            if (!IsSolved && !IsFailed)
             {
 
                 handler.Fail();
-                isFailed = true;
+                IsFailed = true;
 
-                if (autoReset && !delayedFailedReset)
+                if (autoResetFailure && !delayedFailedReset)
                 {
                     Reset();
                     StopAllCoroutines();
                 }
             
 
+            }
+
+            if ((IsFailed && autoResetFailure) || (IsSolved && autoResetSolution) || (!IsSolved && !IsFailed))
+            {
+                triggers[id].UnTrigger();
+                completedSteps--;
             }
 
         }
