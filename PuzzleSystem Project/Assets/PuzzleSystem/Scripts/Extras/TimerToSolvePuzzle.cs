@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace PuzzleSystem.Extras
 {
     [AddComponentMenu("PuzzleSystem/Extras/Timer for Puzzle")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/extras/timer")]
     [RequireComponent(typeof(CorePuzzleLogic))]
     [RequireComponent(typeof(CorePuzzleHandler))]
     public class TimerToSolvePuzzle : MonoBehaviour

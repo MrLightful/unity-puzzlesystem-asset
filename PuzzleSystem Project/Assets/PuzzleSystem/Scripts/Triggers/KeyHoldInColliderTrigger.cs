@@ -19,9 +19,7 @@ namespace PuzzleSystem
         [Tooltip("Do you want to make a delay for trigger activation?")]
         private float activationDelay = 0f;
 
-        private bool isDelayDone = false;
         private bool isWithinCollider = false;
-        private bool isDelaying = false;
 
         #endregion
 
@@ -33,45 +31,27 @@ namespace PuzzleSystem
             if (!isWithinCollider) 
                 return;
 
-
-            if (Input.GetKey(key)) {
-
-                if (activationDelay > 0 && !isDelaying)
-                    StartCoroutine(ProceedDelay());
-
-                else if(activationDelay == 0f)
-                    TriggerImpl();
-                
-
-            }
-            else if(activationDelay > 0 && !isDelayDone) 
+            if (Input.GetKeyDown(key))
             {
-                if (isDelaying)
-                {
-                    isDelaying = false;
-                    StopAllCoroutines();
+                StartCoroutine(ProceedDelay());
+            }
+            else if(Input.GetKeyUp(key))
+            {
+                if(isTriggering && activationDelay == 0) {
+                    isTriggering = false;
                 }
 
-            } else if(activationDelay == 0 && isTriggering) {
-                UnTrigger();
+                if (!isTriggering && activationDelay > 0) {
+                    StopAllCoroutines();
+                }
             }
-        }
 
-        public override void UnTrigger()
-        {
-            base.UnTrigger();
-
-            isDelaying = false;
-            isDelayDone = false;
         }
 
         private IEnumerator ProceedDelay() 
         {
-            isDelaying = true;
-
             yield return new WaitForSeconds(activationDelay);
 
-            isDelayDone = true;
             TriggerImpl();
         }
 
@@ -96,6 +76,17 @@ namespace PuzzleSystem
                 return;
 
             isWithinCollider = false;
+
+
+
+            // Make sure no bugs appear if the object leaves the zone holding the key
+
+            // Abrupt all coroutines if the activation delay is greater than 0,
+            if (activationDelay > 0) StopAllCoroutines();
+
+            // Untrigger the trigger if the actiovation delay is 0,
+            else if (isTriggering) UnTrigger();
+
         }
 
         #endregion

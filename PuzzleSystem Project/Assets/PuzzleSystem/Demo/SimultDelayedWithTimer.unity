@@ -1624,11 +1624,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onAnyOutcomeEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   debug: 1
 --- !u!4 &1801247413
 Transform:
@@ -1661,7 +1656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 10
   activateTimerOnStart: 0
-  forceResetOnFail: 1
+  forceResetOnTimeoutFail: 1
   onTimoutFailEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1748,7 +1743,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<b>Yellow Boxes:</b> Triggers\n\n\n<b>Task:</b> Touch all of them quickly
+  m_Text: "<b>Yellow Boxes:</b> Triggers\n\n\n<b>Task:</b> \nTouch all of them quickly
     before the first touched trigger resets back. \n\nMoreover, after closing this
     window, you have only 10 seconds to do so.\n\n\n<b>Outcome:</b> the notification
     will appear."

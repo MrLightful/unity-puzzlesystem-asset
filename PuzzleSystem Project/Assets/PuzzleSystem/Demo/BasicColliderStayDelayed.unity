@@ -971,7 +971,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   tags:
   - Player
-  activationDelay: 5
+  activationDelay: 3
 --- !u!1 &1332841470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1260,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   tags:
   - Player
-  activationDelay: 5
+  activationDelay: 3
 --- !u!1 &1594541376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,15 +1629,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '<b>Yellow Boxes:</b> Triggers
-
-
-
-    <b>Task:</b> It is need 3 seconds to activate the trigger.
-
-
-
-    <b>Outcome:</b> the notification will appear.'
+  m_Text: "<b>Yellow Boxes:</b> Triggers\n\n\n<b>Task:</b> \n\nYou need to touch the
+    trigger for 3 seconds in order to activate it.\n\nActivate all of them.\n\n\n<b>Outcome:</b>
+    the notification will appear."
 --- !u!222 &1969541036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1794,4 +1788,4 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   tags:
   - Player
-  activationDelay: 5
+  activationDelay: 3

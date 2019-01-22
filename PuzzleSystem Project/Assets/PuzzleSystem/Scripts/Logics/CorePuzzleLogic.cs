@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PuzzleSystem
 {
@@ -85,6 +83,8 @@ namespace PuzzleSystem
         /// </summary>
         public void ForceSolve() 
         {
+            IsFailed = false;
+
             AcceptSolution();
         }
 

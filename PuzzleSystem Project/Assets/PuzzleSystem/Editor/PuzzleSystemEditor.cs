@@ -192,8 +192,8 @@ namespace PuzzleSystem.Editor
             EditorGUILayout.LabelField("Parent Object: ", EditorStyles.boldLabel);
             EditorGUILayout.Space();
 
-            handler = EditorGUILayout.ObjectField("Handler Component: ", handler, typeof(MonoScript), false) as MonoScript;
-            logic = EditorGUILayout.ObjectField("Logic Component: ", logic, typeof(MonoScript), false) as MonoScript;
+            handler = EditorGUILayout.ObjectField(new GUIContent("Handler Component: ", "Specify the component that will define the role of the handler.\n\nThis script will be added to the parent object of the puzzle.\n\nNB! Must inherit CorePuzzleHandler."), handler, typeof(MonoScript), false) as MonoScript;
+            logic = EditorGUILayout.ObjectField(new GUIContent("Logic Component: ", "Specify the component that will define the role of the logic.\n\nThis script will be added to the parent object of the puzzle.\n\nNB! Must inherit CorePuzzleLogic."), logic, typeof(MonoScript), false) as MonoScript;
 
             GUILayout.Space(30);
 
@@ -203,16 +203,16 @@ namespace PuzzleSystem.Editor
             EditorGUILayout.BeginHorizontal();
 
             if (toolBarTriggerType == 1)
-                trigger = EditorGUILayout.ObjectField("Component: ", trigger, typeof(MonoScript), false) as MonoScript;
+                trigger = EditorGUILayout.ObjectField(new GUIContent("Component: ", "Specify the component that will define the role of the triggers.\n\nThis script will be added to all trigger objects of the puzzle.\n\nNB! Must inherit CorePuzzleTrigger."), trigger, typeof(MonoScript), false) as MonoScript;
             else
-                triggerPrefab = EditorGUILayout.ObjectField("Prefab: ", triggerPrefab, typeof(GameObject), false) as GameObject;
+                triggerPrefab = EditorGUILayout.ObjectField(new GUIContent("Prefab: ", "Specify the prefab that will be duplicated into the system.\n\nNB! Must own a component that inherit from CorePuzzleTrigger."), triggerPrefab, typeof(GameObject), false) as GameObject;
 
             toolBarTriggerType = GUILayout.Toolbar(toolBarTriggerType, new string[] { "Prefabs", "Script" }, GUILayout.Width(EditorGUIUtility.currentViewWidth / 4));
 
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
-            triggerCount = EditorGUILayout.IntField("Number of Triggers: ", Mathf.Abs(triggerCount));
+            triggerCount = EditorGUILayout.IntField(new GUIContent("Number of Triggers: ", "Specify the number of triggers that you want to create for the puzzle."), Mathf.Abs(triggerCount));
         }
 
 
@@ -266,7 +266,7 @@ namespace PuzzleSystem.Editor
 
             EditorGUIUtility.AddCursorRect(rt, MouseCursor.Link);
 
-            GUILayout.Label("Find out more about the author.", greyTextStyle);
+            GUILayout.Label("Find out who is the author and his contacts.", greyTextStyle);
 
             GUILayout.Space(30);
 

@@ -12,7 +12,7 @@ namespace PuzzleSystem
     {
 
         [SerializeField]
-        [Tooltip("The tag of the object that will be able to trigger this trigger. Matters only if the type involves the collider functionality.")]
+        [Tooltip("Set of tags for the objects that will be able to trigger this trigger.")]
         /// <summary>
         /// The tag of the object that will be able to trigger this trigger. Matters only if the type involves the collider functionality.
         /// </summary>
