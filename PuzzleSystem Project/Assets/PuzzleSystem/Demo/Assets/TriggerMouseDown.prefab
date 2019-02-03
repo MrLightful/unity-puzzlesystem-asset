@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5884882865716482255}
   - component: {fileID: 33907826589358513}
   - component: {fileID: 2141492011522291443}
-  - component: {fileID: 3428130004851508481}
+  - component: {fileID: 1717562617568721412}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: TriggerMouseDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3428130004851508481
+--- !u!114 &1717562617568721412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5977719547563521773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8850c986815ad4679b872c92455dce19, type: 3}
+  m_Script: {fileID: 11500000, guid: bc9ce3d2281bf445f944d06b23becdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allowMultipleTriggerings: 0
@@ -142,4 +142,4 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   tags:
   - Player
-  triggerEvent: 0
+  mouseEvent: 1

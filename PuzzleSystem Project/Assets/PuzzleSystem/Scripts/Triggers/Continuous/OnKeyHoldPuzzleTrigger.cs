@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/Key Hold Trigger")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/~/drafts/-LWlSLhxdE-k6aU8t8q3/primary/manual/triggers#keyholdincollidertrigger")]
-    public class KeyHoldInColliderTrigger : CoreColliderBasedPuzzleTrigger
+    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/Continuous/On Key Hold Trigger")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/triggers/continuous-triggers#onkeyholdpuzzletrigger")]
+    public class OnKeyHoldPuzzleTrigger : ActivationDelayedPuzzleTriggers
     {
 
         #region Variables
@@ -14,10 +13,6 @@ namespace PuzzleSystem
         [SerializeField]
         [Tooltip("The triggering will be performed by this key on the keyboard if the object is within the Collider.")]
         private KeyCode key = KeyCode.E;
-
-        [SerializeField]
-        [Tooltip("Do you want to make a delay for trigger activation?")]
-        private float activationDelay = 0f;
 
         private bool isWithinCollider = false;
 
@@ -39,21 +34,22 @@ namespace PuzzleSystem
             {
                 if(isTriggering && activationDelay == 0) {
                     isTriggering = false;
+
+
+                    if (debug)
+                        Debug.Log("[PuzzleSystem] The trigger (id: " + id + ") is not triggered anymore as 'OnKeyHold'.");
                 }
 
                 if (!isTriggering && activationDelay > 0) {
                     StopAllCoroutines();
+
+                    if (debug)
+                        Debug.Log("[PuzzleSystem] The trigger (id: " + id + ") is not triggered as 'OnKeyHold', because the activation delay was not reached.");
                 }
             }
 
         }
 
-        private IEnumerator ProceedDelay() 
-        {
-            yield return new WaitForSeconds(activationDelay);
-
-            TriggerImpl();
-        }
 
         #endregion
 

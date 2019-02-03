@@ -900,6 +900,16 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3428130004851508481, guid: 479431aef75ec44349c443f0a15da2ef,
+        type: 3}
+      propertyPath: onTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428130004851508481, guid: 479431aef75ec44349c443f0a15da2ef,
+        type: 3}
+      propertyPath: onUnTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 479431aef75ec44349c443f0a15da2ef, type: 3}
 --- !u!4 &1186432219 stripped
@@ -1137,6 +1147,16 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3428130004851508481, guid: 479431aef75ec44349c443f0a15da2ef,
+        type: 3}
+      propertyPath: onTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428130004851508481, guid: 479431aef75ec44349c443f0a15da2ef,
+        type: 3}
+      propertyPath: onUnTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 479431aef75ec44349c443f0a15da2ef, type: 3}
 --- !u!114 &1532237886 stripped
@@ -1148,7 +1168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e847e6e27422943fabae64da2fb3cfa6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8850c986815ad4679b872c92455dce19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1532237887 stripped
@@ -1391,7 +1411,8 @@ MonoBehaviour:
   - {fileID: 1532237886}
   - {fileID: 1186432220}
   - {fileID: 2026936659}
-  autoReset: 1
+  autoResetFailure: 0
+  autoResetSolution: 0
   delay: 3
   delayedSolvedReset: 0
   delayedFailedReset: 0
@@ -1435,11 +1456,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onFailureEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onAnyOutcomeEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -1625,6 +1641,16 @@ PrefabInstance:
     - target: {fileID: 2141492011522291443, guid: 479431aef75ec44349c443f0a15da2ef,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428130004851508481, guid: 479431aef75ec44349c443f0a15da2ef,
+        type: 3}
+      propertyPath: onTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428130004851508481, guid: 479431aef75ec44349c443f0a15da2ef,
+        type: 3}
+      propertyPath: onUnTriggered.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

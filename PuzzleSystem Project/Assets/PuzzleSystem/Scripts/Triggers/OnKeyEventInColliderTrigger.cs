@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace PuzzleSystem
 {
-    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/Key Press Trigger")]
-    [HelpURL("https://puzzlesystem.gitbook.io/project/~/drafts/-LWlSLhxdE-k6aU8t8q3/primary/manual/triggers#keypressincollidertrigger")]
-    public class KeyPressInColliderTrigger : CoreColliderBasedPuzzleTrigger
+    [AddComponentMenu("PuzzleSystem/Collider Based Triggers/On Key Trigger")]
+    [HelpURL("https://puzzlesystem.gitbook.io/project/manual/triggers#onkeyeventpuzzletrigger")]
+    public class OnKeyEventInColliderTrigger : CoreColliderBasedPuzzleTrigger
     {
 
         #region Variables
 
-        private enum KeyboardTriggerType
+        private enum KeyboardEvent
         {
             GetKeyUp,
             GetKeyDown
@@ -23,7 +23,7 @@ namespace PuzzleSystem
         private KeyCode key = KeyCode.E;
 
         [SerializeField]
-        private KeyboardTriggerType type = KeyboardTriggerType.GetKeyUp;
+        private KeyboardEvent keyEvent = KeyboardEvent.GetKeyDown;
 
         private bool isTriggered = false;
 
@@ -36,14 +36,14 @@ namespace PuzzleSystem
             if (tags.Length > 0 && Array.IndexOf(tags, other.tag) == -1 && !isTriggered)
                 return;
 
-            switch (type) 
+            switch (keyEvent) 
             {
 
-                case KeyboardTriggerType.GetKeyUp:
+                case KeyboardEvent.GetKeyUp:
                     GetKeyUpCheck();
                     break;
 
-                case KeyboardTriggerType.GetKeyDown:
+                case KeyboardEvent.GetKeyDown:
                     GetKeyDownCheck();
                     break;
 
