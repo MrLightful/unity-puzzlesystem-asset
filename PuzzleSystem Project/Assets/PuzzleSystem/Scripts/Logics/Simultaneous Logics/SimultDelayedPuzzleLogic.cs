@@ -44,7 +44,7 @@ namespace PuzzleSystem
                 return;
 
             StartCoroutine(TriggerDelayThread(id));
-
+            
             // If the count of completed steps reached length of the triggers array,
             // it means that all triggers are still active.
             // Thus, the puzzle is solved.
@@ -87,9 +87,8 @@ namespace PuzzleSystem
                 }
             
 
-            }
-
-            if ((IsFailed && autoResetFailure) || (IsSolved && autoResetSolution) || (!IsSolved && !IsFailed))
+            } 
+            else if ((IsFailed && autoResetFailure) || (IsSolved && autoResetSolution) || (!IsSolved && !IsFailed))
             {
                 triggers[id].UnTrigger();
                 completedSteps--;
