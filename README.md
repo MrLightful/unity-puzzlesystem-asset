@@ -9,7 +9,7 @@
 
 ## Introduction
 
-<span style="display:block;text-align:center; margin:60px;">![Logo](https://raw.githubusercontent.com/romatallinn/unity-puzzlesystem-asset/master/Meta%20Data/large.png?token=AOO4vC_ZA-4J7sn5MqJHwuc_UVEkQLLhks5cm-AFwA%3D%3D)</span>
+<p align="center" style="margin: 50px;">![Logo](https://raw.githubusercontent.com/romatallinn/unity-puzzlesystem-asset/master/Meta%20Data/large.png?token=AOO4vC_ZA-4J7sn5MqJHwuc_UVEkQLLhks5cm-AFwA%3D%3D)</p>
 
 
 **Puzzle System** is a highly customizable framework for the projects that contain any kind of puzzles. The framework provides you with the set of common, but yet customizable, solutions; as well as the basic classes that can be used in order to create unique puzzle experiences.
@@ -69,13 +69,13 @@ There is an editor tool that you can make use of.
 In order to open it:
 `Menu -> Tools -> Puzzle System`
 
-<span style="display:block;text-align:center;">
+<p align="center">
 
 ![Open Editor Tool](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LWSZAoTb0akZrStcZ8k%2F-LWc3kW9MHyHUx43orVx%2F-LWc3nyE4PwJCNn8ArCP%2FScreenshot%202019-01-19%20at%2022.44.35.png?alt=media&token=8feda4cb-b3d8-4b4d-9eb1-d6060407a8f9)
 
-<img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LWSZAoTb0akZrStcZ8k%2F-LWme9e3zpdRdaVUI-Oh%2F-LWc3t95nIJXM0TV82nF%2FScreenshot%202019-01-19%20at%2022.44.11.png?alt=media&token=1d388944-71b1-4b54-8bcc-87f7e9f11273" width="500px">
+<img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LWSZAoTb0akZrStcZ8k%2F-LWme9e3zpdRdaVUI-Oh%2F-LWc3t95nIJXM0TV82nF%2FScreenshot%202019-01-19%20at%2022.44.11.png?alt=media&token=1d388944-71b1-4b54-8bcc-87f7e9f11273" width="500px" style="margin:20px;">
 
-</span>
+</p>
 
 
 
@@ -90,7 +90,7 @@ There you can read more thorough material on all of the aspects and features ava
 ## Donation
 I know, this project isn't something huge, but I'm a just passionate student of Computer Science & Engineering that wants to conquer the world with his dev skills. A small tip for a cup of coffee, so I can code all days and nights, would be highly appreciated and really helpful!
 
-<span style="display:block;text-align:center; margin-top:30px;">[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/sirokov)</span>
+<p align="center" style="margin-top: 30px;">[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/sirokov)</p>
 
 
 
