@@ -87,7 +87,7 @@ There you can read more thorough material on all of the aspects and features ava
 ## Donation
 I know, this project isn't something huge, but I'm a just passionate student of Computer Science & Engineering that wants to conquer the world with his dev skills. A small tip for a cup of coffee, so I can code all days and nights, would be highly appreciated and really helpful!
 
-[paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/sirokov)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/sirokov)
 
 
 
